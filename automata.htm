@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>Cell Automata</title>
+		<script type="text/javascript" src="automata.js"></script>
+		<script>
+			var arena;
+			// display matrix in html
+			function displayMatrix(){
+				var cellStatus; 
+				var strOut = "<table id='tableID'><tr>";
+				for(var y = 0; y < arena.getYSize(); ++y){
+					/*if(x == arena.getXSize() - 1) {
+						strOut = strOut  + "<tr>"
+					}*/
+					strOut = strOut + "<tr>";
+					for(var x = 0; x < arena.getXSize(); ++x){
+						
+						strOut =  strOut + "<td><a id='cell_"+x+"_"+y + "' href='#' onClick='toggle(" + x + "," + y +");' >" + 							arena.getMatrix()[x][y] + "</td>";
+						
+					}
+					strOut = strOut +  "</tr>";
+				}
+				strOut = strOut + "</table>";
+   
+				document.getElementById('table').innerHTML = strOut;	
+			}
+			
+			
+			function init(){
+				var xSize = 4;   // number of rows
+				var ySize = 3;   // number of columns
+				var matrix = [];					
+					
+				for (var x = 0; x < xSize; ++x){			
+					matrix[x] = [];
+					for (var y = 0;  y<ySize; ++y){	
+						matrix[x][y]=0;	
+					}
+				}
+				arena = new Arena(matrix);
+				this.displayMatrix();		
+			}
+			
+			function toggle(x,y){
+				var id="cell_" + x + "_" + y;
+				var cellElement = document.getElementById(id);
+				var alive = parseInt(cellElement.innerHTML);
+		        var toggleValue = alive ? 0 : 1;
+		        cellElement.innerHTML = toggleValue;
+		        arena.getMatrix()[x][y] = toggleValue;
+			
+			}		
+		</script>
+	</head>
+	<body onLoad="init();">	
+		<div><div id="table"/></div><div>	
+		<input id="btnNext" type="button" value="Next" onclick="displayMatrix(arena.getNextGenMatrix());"  />
+			
+	</body>	
+
+</html>
