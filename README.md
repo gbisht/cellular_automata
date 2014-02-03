@@ -1,4 +1,4 @@
-cellular_automata
+cellular automata
 =================
 Posting my JS code for an interesting programming challenge.
 
