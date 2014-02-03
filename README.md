@@ -1,4 +1,4 @@
-cellular automata
+Grid of life
 =================
 Posting my JS code for an interesting programming challenge.
 
